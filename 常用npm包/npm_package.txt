@@ -1,0 +1,8 @@
+﻿好的NPM包
+	日期格式化  		silly-datetime
+	日期处理 			mini-moment
+	日期处理			moment    可以参考http://momentjs.cn/
+	md5加密  			md5-node  等等
+	小型的json数据库    lowdb
+	parse csv with js   papaparse
+	创建粒子背景的库	particles.js

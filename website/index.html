@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>票税宝</title>
+  <script src="assets/plugins/jquery.min.js"></script>
+  <link rel="stylesheet" href="./assets/css/base.css">
+  <link rel="stylesheet" href="./assets/css/foot.css">
+  <link rel="stylesheet" href="./assets/css/index.css">
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/api.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="banner1">
+      <div class="banner1-img">
+        <img src="./assets/images/index/banner1.png" alt="">
+      </div>
+      <div class="banner1-logo">
+        <i></i>
+      </div>
+      <div class="banner1-login">
+        <p class="login">我已有票税宝账号，
+          <a href="javascript:;" onclick="$('.modal-login').fadeIn()">快速登陆</a>
+        </p>
+        <p class="logined">
+          <span>您好，</span>
+          <span id="name"></span>
+          <span class="line"></span>
+          <a href="javascript:;" class="mypsb" onclick="enterPsb()">我的票税宝</a>
+          <span class="line"></span>
+          <a href="javascript:;" onclick="logout()">退出</a>
+        </p>
+      </div>
+      <div class="banner1-nav">
+        <p></p>
+        <div class="content">
+          <a href="assets/page/personal/personal-index.html">我是个人用户</a>
+          <a href="assets/page/company/company-index.html">我是企业用户</a>
+          <a href="assets/page/platform/platform.html">我是合作伙伴</a>
+        </div>
+      </div>
+    </div>
+    <div class="banner2">
+      <div class="banner2-title">
+        <h1>你的发票助手，专为电子报销而生</h1>
+      </div>
+      <div class="banner2-offer" style="margin-left: 7.836990595611285%">
+        <div class="offer-img">
+          <img src="assets/images/index/3.png" alt="">
+        </div>
+        <h1>企业票据中心</h1>
+        <p>为企业提供票据管理中心，实现对员工发票的集中收集、鉴伪、去重和自动抵扣税务。</p>
+        <div class="offer-more">
+          <a href="assets/page/product/invoice-center.html" target="_blank">
+            <i></i>
+            <span>了解更多</span>
+          </a>
+        </div>
+      </div>
+      <div class="banner2-offer">
+        <div class="offer-img">
+          <img src="assets/images/index/1.png" alt="">
+        </div>
+        <h1>工作发票助手</h1>
+        <p>为个人工作提供电子发票的自动扫描储存、鉴伪、管理、协助个人管理差旅出行和商务活动，方便报销。</p>
+        <div class="offer-more">
+          <a href="assets/page/product/work-assistant.html" target="_blank">
+            <i></i>
+            <span>了解更多</span>
+          </a>
+        </div>
+      </div>
+      <div class="banner2-offer">
+        <div class="offer-img">
+          <img src="assets/images/index/4.png" alt="">
+        </div>
+        <h1>票据与存储</h1>
+        <p>通过天猫、京东、滴滴等开放生态系统链接，为个人消费者和企业提供一站式发票收集的云存储服务和税务服务，实现多端同步、数据管理</p>
+        <div class="offer-more">
+          <a href="assets/page/product/invoice-save.html" target="_blank">
+            <i></i>
+            <span>了解更多</span>
+          </a>
+        </div>
+      </div>
+      <div class="banner2-offer">
+        <div class="offer-img">
+          <img src="assets/images/index/2.png" alt="">
+        </div>
+        <h1>家庭票据管家</h1>
+        <p>为家庭提供各类电子票据，纸质发票的凭证保管，方便维修、索赔和抵扣税务。</p>
+        <div class="offer-more">
+          <a href="assets/page/product/invoice-manager.html" target="_blank">
+            <i></i>
+            <span>了解更多</span>
+          </a>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="banner4">
+      <div>
+        <div class="video1">
+          <i onclick="openVideo(1)"></i>
+          <p>生活中的票税宝</p>
+        </div>
+        <div class="video2">
+          <i onclick="openVideo(2)"></i>
+          <p>工作中的票税宝</p>
+        </div>
+      </div>
+    </div>
+    <div class="banner3">
+      <img src="./assets/images/index/banner2.png" alt="">
+    </div>
+    <div class="about">
+      <div class="content">
+        <div class="left">
+          <div class="logo">
+            <img src="assets/images/index/down_logo.png" alt="">
+          </div>
+          <div class="download">
+            <a href="assets/page/personal/download.html" target="_blank" class="weixin"></a>
+            <a href="javascript:;" class="weibo" target="_blank"></a>
+            <a href="javascript:;" class="dingding" target="_blank"></a>
+            <a href="javascript:;" class="qiyeweixin" target="_blank"></a>
+            <a href="assets/page/personal/download.html" class="ios" target="_blank"></a>
+            <a href="assets/page/personal/download.html" class="android" target="_blank"></a>
+          </div>
+        </div>
+        <div class="mid">
+          <p>合作伙伴</p>
+          <div>
+            <a href="http://www.actionsoft.com.cn/" class="yanhuang" target="_blank"></a>
+            <a href="http://www.excellence.com.cn/" class="jinghua" target="_blank"></a>
+            <a href="http://www.chinasofti.com/" class="zhongruan" target="_blank"></a>
+            <a href="http://www.bingosoft.net/newbingo2015/home.html" class="pingao" target="_blank"></a>
+          </div>
+        </div>
+        <div class="right">
+          <p>友情链接</p>
+          <div>
+            <a href="http://www.chinatax.gov.cn/" target="_blank">国税总局</a>
+            <a href="http://www.gd-n-tax.gov.cn/" target="_blank">广东税务</a>
+            <a href="http://www.fj-n-tax.gov.cn/" target="_blank">福建税务</a>
+            <a href="http://www.gz-n-tax.gov.cn/" target="_blank">贵州税务</a>
+            <a href="http://www.tax.sh.gov.cn/pub/" target="_blank">上海税务</a>
+            <a href="http://www.bjsat.gov.cn/bjsat/" target="_blank">北京税务</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+
+      <p>Copyright © 2016-2018 广州湛蓝数据科技有限公司 版权所有</p>
+      <p>
+        <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备18023998号</a>
+      </p>
+    </div>
+  </div>
+  <div class="modal-video">
+    <div>
+      <i onclick="$('.modal-video').fadeOut();$('video').trigger('pause');"></i>
+      <video id="video1" width="1000" height="650" controls onclick="playVideo(this)" class="video1 pause">
+        <source type="video/mp4">
+        <source type="video/ogg">
+        <source type="video/webm">
+        <object width="320" height="240">
+          <embed width="320" height="240">
+        </object>
+      </video>
+      <video id="video2" width="1000" height="650" controls onclick="playVideo(this)" class="video2 pause">
+        <source type="video/mp4">
+        <source type="video/ogg">
+        <source type="video/webm">
+        <object width="320" height="240">
+          <embed width="320" height="240">
+        </object>
+      </video>
+    </div>
+  </div>
+  <div class="modal-login">
+    <div class="content">
+      <a href="javascript:;" class="close" onclick="$('.modal-login').fadeOut()"></a>
+      <!-- 二维码登录 <a href="javascript:;" class="way" onclick="$(this).toggleClass('active')"></a> -->
+      <p>登录票税宝</p>
+      <div class="tip"></div>
+      <div class="account">
+        <i class="userico ico"></i>
+        <input type="text" placeholder="请输入账号" id="account" oninput="showClose(this)" onkeyup="value=value.replace(/[^\d]/g,'') "
+          ng-pattern="/[^a-zA-Z]/">
+        <i class="close" onclick="$(this).prev().val('');$('#psw').val('');$(this).fadeOut();"></i>
+      </div>
+      <div class="psw">
+        <i class="pswico ico"></i>
+        <input type="password" placeholder="请输入密码" id="psw" oninput="showClose(this)" maxlength="30">
+        <!-- <i class="close" onclick="$(this).prev().val('');$(this).fadeOut();"></i> -->
+      </div>
+      <a href="assets/page/personal/reset-psw.html" class="forget">忘记登录密码？</a>
+      <a href="javascript:;" class="login-btn" onclick="login()">登 录</a>
+      <a href="assets/page/personal/register.html" class="register-btn">免费注册</a>
+    </div>
+  </div>
+  <script>
+    $(function(){
+      $.getScript('./js/index-min.js')
+    })
+  </script>
+</body>
+
+</html>

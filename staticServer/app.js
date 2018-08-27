@@ -2,8 +2,8 @@ const http = require('http');
 const chalk = require('chalk');
 const path = require('path');
 
-const config = require('./config/index')
-const route = require('./router/index')
+const config = require('./src/config/index')
+const route = require('./src/router/index')
 
 const server = http.createServer((req, res) => {
   const filePath = path.join(config.root, req.url);

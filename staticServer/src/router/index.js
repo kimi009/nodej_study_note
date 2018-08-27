@@ -5,7 +5,8 @@ const stat = promisify(fs.stat);
 const readdir = promisify(fs.readdir);
 const handlebars = require('handlebars')
 const conf = require('../config/index')
-
+const mimes = require('../config/mime')
+const compress = require('../helper/compress')
 //这里的代码是只执行一次，要理解nodejs 模块加载机制
 const templatePath = path.join(__dirname, '../template/dir.tpl');
 const source = fs.readFileSync(templatePath)
@@ -17,8 +18,15 @@ module.exports = async function (req, res, filePath) {
     let stats = await stat(filePath);
     if (stats.isFile()) {
       res.statusCode = 200;
-      res.setHeader('Content-Type', 'text/plain');
-      let stream = fs.createReadStream(filePath,{encoding:'utf8'});
+      const mime = mimes(path.extname(filePath));
+      console.log(mime)
+      res.setHeader('Content-Type', mime);
+      let stream = fs.createReadStream(filePath, {
+        encoding: 'utf8'
+      });
+      if (filePath.match(conf.compress)) {
+        stream = compress(stream,req,res);
+      }
       stream.pipe(res);
     } else if (stats.isDirectory()) {
       let files = await readdir(filePath);

@@ -1,9 +1,6 @@
-const {
-  createGzip,
-  createDeflate
-} = require('zlib')
+import { createGzip, createDeflate } from 'zlib';
 
-module.exports = (rs, req, res) => {
+export default (rs, req, res) => {
   const acceptEncoding = req.headers['accept-encoding'];
   if (!acceptEncoding || !acceptEncoding.match(/\b(gzip|deflate)\b/)) { //单词边界
     return rs;

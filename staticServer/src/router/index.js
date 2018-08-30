@@ -6,7 +6,7 @@ const readdir = promisify(fs.readdir);
 const handlebars = require('handlebars')
 const conf = require('../config/index')
 const mimes = require('../config/mime')
-const compress = require('../helper/compress').default
+const compress = require('../helper/compress')
 //这里的代码是只执行一次，要理解nodejs 模块加载机制
 const templatePath = path.join(__dirname, '../template/dir.tpl');
 const source = fs.readFileSync(templatePath)

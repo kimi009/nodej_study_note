@@ -486,9 +486,5 @@ const mimes = {
 };
 
 module.exports = (ext) => {
-  let exten = ext
-  if (!ext) {
-    exten = '.txt'
-  }
-  return mimes[exten];
+  return mimes[ext] || mimes['.txt'];
 }

@@ -7,7 +7,7 @@ module.exports = {
     maxAge: 600,
     expires: true,
     cacheControl: true,
-    lastModifyed: true,
+    lastModified: true,
     eTag: true
   }
 }

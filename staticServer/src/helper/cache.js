@@ -8,7 +8,7 @@ function refreshRes(stats, res) {
     maxAge,
     cacheControl,
     lastModified,
-    etag
+    eTag
   } = cache;
 
   if (expires) {
@@ -23,8 +23,8 @@ function refreshRes(stats, res) {
     res.setHeader('Last-Modified', stats.mtime.toUTCString())
   }
 
-  if (etag) {
-    res.setHeader('ETag', `${stats.size}-${stats.mtime}`)
+  if (eTag) {
+    res.setHeader('ETag', `${stats.size}-${stats.mtime.getTime()}`)
   }
 }
 

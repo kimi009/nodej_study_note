@@ -4,7 +4,6 @@ const promisify = require('util').promisify;
 const stat = promisify(fs.stat);
 const readdir = promisify(fs.readdir);
 const handlebars = require('handlebars')
-const conf = require('../config/index')
 const mimes = require('../config/mime')
 const compress = require('../helper/compress')
 //这里的代码是只执行一次，要理解nodejs 模块加载机制
@@ -13,7 +12,7 @@ const source = fs.readFileSync(templatePath)
 const template = handlebars.compile(source.toString())
 const isFresh = require('../helper/cache')
 
-module.exports = async function (req, res, filePath) {
+module.exports = async function (req, res, filePath, conf) {
   try {
     let stats = await stat(filePath);
     if (stats.isFile()) {

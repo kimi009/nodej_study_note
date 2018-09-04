@@ -30,7 +30,7 @@
       "type": "node",
       "request": "launch",
       "name": "nodejs",
-      "program": "${workspaceFolder}/express_demo/app.js"
+      "program": "${workspaceFolder}/express/src/app.js"
     },
     {
       "type": "node",

@@ -1,6 +1,7 @@
 //mongodb 数据库操作
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
+const ObjectID = require('mongodb').ObjectID;
 var DbUrl = 'mongodb://127.0.0.1:27017/student'
 
 const connectDb = async() => {
@@ -13,6 +14,8 @@ const connectDb = async() => {
     return null;
   }
 }
+
+exports.ObjectID = ObjectID;
 
 exports.find = async(collectionName, condition) => {
   try {
@@ -66,15 +69,31 @@ exports.insert = async(collectionName, data, callback) => {
 
 }
 
-exports.updateOne = async(collectionName, target, data) => {
+
+
+exports.updateOne = async(collectionName, target, data, callback) => {
   let client = await connectDb();
   if (client) {
     let coll = client.db().collection(collectionName);
     let res = await coll.updateOne(target, {
-      $set: data
+      $set: data,
+      $currentDate: {
+        lastModified: true
+      }
     });
+    if (callback) {
+      callback(res.result);
+    }
     client.close();
     return res.result;
   }
   return 0;
+}
+
+exports.deleteOne = async(collectionName, target) => {
+  let client = await connectDb();
+  if (client) {
+    let coll = client.db().collection(collectionName);
+    await coll.deleteOne(target);
+  }
 }

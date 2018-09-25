@@ -48,13 +48,26 @@
                         <tbody>
                             <%for(var i=0;i<products.length;i++){%>
                                 <tr>
-                                    <td><%=i+1%></td>
-                                    <td>图标</td>
-                                    <td><%=products[i].title%></td>
-                                    <td><%=products[i].price%></td>
-                                    <td><%=products[i].fee%></td>
+                                    <td>
+                                        <%=i+1%>
+                                    </td>
+                                    <td>
+                                        <img width="100" src="<%=products[i].path%>">
+                                    </td>
+                                    <td>
+                                        <%=products[i].title%>
+                                    </td>
+                                    <td>
+                                        <%=products[i].price%>
+                                    </td>
+                                    <td>
+                                        <%=products[i].fee%>
+                                    </td>
 
-                                    <td class="text-center"><a id="modify" href="/productedit">修改</a> 删除</td>
+                                    <td class="text-center">
+                                        <a id="modify" href="/productedit?id=<%=products[i]._id%>">修改</a>
+                                        <a id="modify" href="/productdel?id=<%=products[i]._id%>">删除</a>
+                                    </td>
                                 </tr>
                                 <%}%>
 

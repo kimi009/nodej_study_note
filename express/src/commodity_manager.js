@@ -2,6 +2,7 @@ var express = require('express');
 var app = new express();
 
 const Db = require('../util/db')
+const fs = require('fs')
 
 //图片上传模块 既可以获取form表单数据 还可以实现上传图片
 var multiparty = require('multiparty')
@@ -31,8 +32,8 @@ app.set('view engine', 'ejs'); //使用
 
 //配置public目录为我们的静态资源服务
 app.use(express.static('public'));
-
-
+//先匹配upload路由 然后去在upload里面找图片地址
+app.use('/upload', express.static('upload'));
 
 //自定义中间件判断登陆状态
 
@@ -159,15 +160,45 @@ app.post('/doProductAdd', async(req, res) => {
 })
 
 app.get('/productedit', async(req, res) => {
-  let result = await Db.updateOne('product', {
-    'price': 6000
-  }, 500);
-  // res.render('productedit')
-  res.send('更新成功')
+  let result = await Db.findOne('product', new Db.ObjectID(req.query.id));
+  res.render('productedit', {
+    data: result
+  });
 })
 
-app.get('/productdel', (req, res) => {
-  res.render('productdel')
+app.post('/doProductEdit', async(req, res) => {
+  let form = new multiparty.Form();
+  form.uploadDir = 'upload'; //图片上传保存的地址
+  form.parse(req, function (err, fields, files) {
+    let id = fields._id[0],
+      title = fields.title[0],
+      price = fields.price[0],
+      fee = fields.fee[0],
+      description = fields.description[0];
+      path = files.pic[0].path;
+    let updateFields = {title,price,fee,description};
+    if(files.pic[0].originalFilename){
+      updateFields.path = path;
+    }else{
+      // console.log(path)
+      fs.unlink(path)
+    }
+    Db.updateOne('product', {
+      _id: new Db.ObjectID(id)
+    }, updateFields, function (updateRes) {
+      if (updateRes.n == 1) {
+        res.redirect('/product')
+      }
+    });
+
+  })
+})
+
+
+
+app.get('/productdel', async (req, res) => {
+  await Db.deleteOne('product',{_id:new Db.ObjectID(req.query.id)})
+  res.redirect('/product')
 })
 
 app.get('/logout', (req, res) => {
@@ -175,4 +206,4 @@ app.get('/logout', (req, res) => {
   res.redirect('login');
 })
 
-app.listen(3000);
+app.listen(3001);

@@ -47,13 +47,5 @@ class Db {
   }
 }
 
-async function test() {
-  console.time('start')
-  await Db.find('user', {})
-  console.timeEnd('start')
 
-  console.time('start1')
-  await Db.find('user', {})
-  console.timeEnd('start1')
-}
-test();
+

@@ -3,10 +3,10 @@ const MongoClient = require('mongodb').MongoClient;
 const config = require('./config.js');
 
 class Db {
-
+  //单例模式
   static async getInstance() {
     if (!Db.instance) {
-      let client = await this.connect();
+      let client = await Db.connect();
       Db.instance = client.db(config.dbName);
     }
     return Db.instance;
@@ -18,13 +18,14 @@ class Db {
 
   static async connect() {
     //连接数据库
+    console.log('connect')
     try {
       return await MongoClient.connect(config.dbUrl, {
         useNewUrlParser: true
       });
-    } catch (err) {
-      //报错
+    } catch (error) {
     }
+
   }
 
   static async find(collectionName, json) {
@@ -47,5 +48,4 @@ class Db {
   }
 }
 
-
-
+module.exports = Db;

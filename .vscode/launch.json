@@ -5,6 +5,12 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "node",
+      "request": "launch",
+      "name": "test node",
+      "program": "${file}"
+    },
+    {
       // 语言
       "type": "node",
       // 是调试模式，还是附着到已运行的程序上
@@ -30,7 +36,7 @@
       "type": "node",
       "request": "launch",
       "name": "nodejs",
-      "program": "${workspaceFolder}/express/src/app.js"
+      "program": "${workspaceFolder}/express_demo/app.js"
     },
     {
       "type": "node",

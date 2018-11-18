@@ -35,6 +35,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "koa-socket",
+      "program": "${workspaceFolder}/socket_koa/app.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Launch Program",
       "program": "${workspaceFolder}/fs模块\\02fs.js"
     }

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="http://localhost:3009/socket.io/socket.io.js"></script>
+  <script>
+    var socket = io.connect('http://localhost:3009?roomid=2');
+
+    function sendData() {
+      socket.emit('addCart', '我是客户端数据')
+    }
+    socket.on('serverEmit', function (data) {
+      console.log(data)
+    })
+  </script>
+</head>
+
+<body>
+  <button type="button" onclick="sendData()">提交数据</button>
+</body>
+
+
+</html>
+
+</html>

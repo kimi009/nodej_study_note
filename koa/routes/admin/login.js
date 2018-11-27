@@ -22,7 +22,6 @@ router.get('/code', async(ctx) => {
 })
 
 router.post('/dologin', async(ctx) => {
-  // console.log(tools.md5('123456'));
   let {
     username,
     password,
@@ -40,10 +39,10 @@ router.post('/dologin', async(ctx) => {
       await ctx.render('admin/login')
     }
   } else {
-    console.log('验证码失败')
     await ctx.render('admin/login', {
       codeError: true
     });
+    // await ctx.redirect('back')
   }
 })
 

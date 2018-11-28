@@ -36,13 +36,19 @@ router.post('/dologin', async(ctx) => {
       ctx.session.userinfo = res[0];
       await ctx.redirect('/admin')
     } else {
-      await ctx.render('admin/login')
+      await ctx.render('admin/login', {
+        uName: username,
+        codeError: true
+      });
     }
   } else {
     await ctx.render('admin/login', {
+      uName: username,
       codeError: true
     });
-    // await ctx.redirect('back')
+    // await ctx.redirect('back', {
+    //   codeError: true
+    // })
   }
 })
 

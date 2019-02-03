@@ -12,14 +12,14 @@ const Koa = require('koa'),
 const app = new Koa();
 
 //配置session
-app.keys = ['my first koa project']
+app.keys = ['my first koa project'] //签名
 const CONFIG = {
-  key: 'koa:sess',
-  maxAge: 864000,
+  key: 'koa:sess', //默认
+  maxAge: 864000, // 过期时间
   overwrite: true,
   httpOnly: true,
   signed: true,
-  rolling: true,
+  rolling: true, // 每次请求都强制设置cookie
   renew: false
 };
 app.use(session(CONFIG, app))
@@ -27,19 +27,20 @@ app.use(session(CONFIG, app))
 //配置koa-bodyparser
 app.use(bodyparser());
 
-//配置模板引擎
+//配置koa-art-template模板引擎
 render(app, {
-  root: path.join(__dirname, 'views'),
-  extname: '.html',
-  debug: process.env.NODE_ENV != 'production'
+  root: path.join(__dirname, 'views'), // 表示视图的位置
+  extname: '.html', // 表示后缀名是什么
+  debug: process.env.NODE_ENV != 'production' // 是否开启调试模式
 })
-//配置中间件
+
+//配置全局状态中间件
 app.use(async(ctx, next) => {
   ctx.state.__HOST__ = 'http://' + ctx.request.header.host
 
   await next()
 })
-//配置静态资源
+//配置静态资源中间件  koa中的静态资源中间件可以配置多个
 app.use(static(__dirname + '/public/'))
 
 router.use('/admin', admin)

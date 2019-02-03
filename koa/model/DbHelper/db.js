@@ -8,17 +8,17 @@ class Db {
     if (!Db.instance) {
       let client = await Db.connect();
       Db.instance = client.db(config.dbName);
+      console.log('instance')
     }
     return Db.instance;
   }
 
   constructor() {
-
+    console.log(111)
   }
 
   static async connect() {
     //连接数据库
-    console.log('connect')
     try {
       return await MongoClient.connect(config.dbUrl, {
         useNewUrlParser: true

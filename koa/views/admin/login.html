@@ -42,14 +42,14 @@
 			color: #f00;
 		}
 	</style>
-	<script src='{{__HOST__}}/admin/assets/js/jquery-2.0.3.min.js'></script>
+	<!-- <script src='{{__HOST__}}/admin/assets/js/jquery-2.0.3.min.js'></script>
 	<script>
 		$(function () {
 			$('#code').click(function () {
 				$(this).attr('src', '{{__HOST__}}/admin/login/code?id=' + Math.random() * 1000)
 			})
 		})
-	</script>
+	</script> -->
 </head>
 
 <body class="login-layout">
@@ -75,7 +75,7 @@
 											<fieldset>
 												<label class="block clearfix">
 													<span class="block input-icon input-icon-right">
-														<input type="text" name="username" class="form-control" value="{{uName}}" placeholder="用户名" />
+														<input type="text" name="userName" class="form-control"  placeholder="用户名" />
 														<i class="icon-user"></i>
 													</span>
 												</label>
@@ -94,9 +94,9 @@
 														<img id="code" style="float:right;" src="{{__HOST__}}/admin/login/code" alt="">
 													</span>
 												</label>
-												{{if codeError==true}}
+												<!-- {{if codeError==true}}
 												<label style="color:#f00;">验证码错误</label>
-												{{/if}}
+												{{/if}} -->
 												<div class="space"></div>
 
 												<div class="clearfix">

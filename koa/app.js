@@ -7,7 +7,9 @@ const Koa = require('koa'),
   bodyparser = require('koa-bodyparser'),
   index = require('./routes/index.js'),
   admin = require('./routes/admin.js'),
-  api = require('./routes/api.js');
+  api = require('./routes/api.js'),
+  sd = require('silly-datetime'),
+  jsonp = require('koa-jsonp');
 
 const app = new Koa();
 
@@ -24,6 +26,8 @@ const CONFIG = {
 };
 app.use(session(CONFIG, app))
 
+app.use(jsonp());
+
 //配置koa-bodyparser
 app.use(bodyparser());
 
@@ -31,6 +35,9 @@ app.use(bodyparser());
 render(app, {
   root: path.join(__dirname, 'views'), // 表示视图的位置
   extname: '.html', // 表示后缀名是什么
+  dateFormat: dateFormat = function (value) {
+    return sd.format(value, 'YYYY-MM-DD HH:mm:ss')
+  },
   debug: process.env.NODE_ENV != 'production' // 是否开启调试模式
 })
 

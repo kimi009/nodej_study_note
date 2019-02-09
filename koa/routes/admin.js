@@ -2,7 +2,8 @@ const router = require('koa-router')(),
   url = require('url'),
   login = require('./admin/login'),
   manager = require('./admin/manager')
-  user = require('./admin/user');
+  user = require('./admin/user')
+  index = require('./admin/index');
 
 router.use(async(ctx, next) => {
   let pathname = url.parse(ctx.request.url).pathname.substring(1);
@@ -29,6 +30,8 @@ router.use(async(ctx, next) => {
 router.get('/', async(ctx) => {
   await ctx.render('admin/index')
 })
+
+router.use(index)
 
 router.use('/login', login)
 router.use('/user', user)

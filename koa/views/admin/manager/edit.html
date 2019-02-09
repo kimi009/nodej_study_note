@@ -46,17 +46,18 @@
 
 				<div class="page-header">
 					<h1>
-						新增管理员
+						编辑管理员
 					</h1>
 				</div>
 				<!-- /.page-header -->
 
-				<form class="form-horizontal" role="form" method="POST" action="{{__HOST__}}/admin/manager/doAdd">
+				<form class="form-horizontal" role="form" method="POST" action="{{__HOST__}}/admin/manager/doEdit">
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right" for="form-field-1">用户名:</label>
 
 						<div class="col-sm-10">
-							<input type="text" id="form-field-1" name="userName" placeholder="" value="{{userName}}" class="col-xs-10 col-sm-5">
+							<input type="hidden" name="id" value="{{@info._id}}">
+							<input type="text" id="form-field-1" readonly name="userName" placeholder="" value="{{info.userName}}" class="col-xs-10 col-sm-5">
 						</div>
 					</div>
 

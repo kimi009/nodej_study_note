@@ -1,7 +1,10 @@
-const MongoClient = require('mongodb').MongoClient;
+const MongoDb = require('mongodb');
+
+const MongoClient = MongoDb.MongoClient;
 
 const config = require('./config.js');
 
+const ObjectID = MongoDb.ObjectID;
 class Db {
   //单例模式
   static async getInstance() {
@@ -23,8 +26,7 @@ class Db {
       return await MongoClient.connect(config.dbUrl, {
         useNewUrlParser: true
       });
-    } catch (error) {
-    }
+    } catch (error) {}
 
   }
 
@@ -33,18 +35,25 @@ class Db {
     return await client.collection(collectionName).find(json).toArray();
   }
 
-  async findOne(collectionName, json) {
+  static async findOne(collectionName, json) {
     let client = await Db.getInstance();
     return await client.collection(collectionName).findOne(json);
   }
 
-  async insertOne(collectionName, json) {
+  static async insertOne(collectionName, json) {
     let client = await Db.getInstance();
     return client.collection(collectionName).insertOne(json);
   }
 
-  update() {
+  static async update(collectionName, filter, json) {
+    let client = await Db.getInstance();
+    return client.collection(collectionName).updateOne(filter, {
+      $set: json
+    });
+  }
 
+  static getObjectId(id) {
+    return new ObjectID(id)
   }
 }
 

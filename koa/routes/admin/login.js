@@ -23,32 +23,44 @@ router.get('/code', async(ctx) => {
 
 router.post('/dologin', async(ctx) => {
   let {
-    username,
+    userName,
     password,
     code
   } = ctx.request.body;
   if (code === ctx.session.code) {
-    let res = await db.find('admin', {
-      "username": username,
+    console.log(tools.md5('123456'))
+    let res = await db.findOne('admin', {
+      "userName": userName,
       "password": tools.md5(password)
     });
-    if (res.length) {
-      ctx.session.userinfo = res[0];
+    if (res) {
+      ctx.session.userinfo = res;
+      //登录成功
+      await db.update('admin', {
+        '_id': db.getObjectId(res._id)
+      }, {
+        loginDate: new Date()
+      })
       await ctx.redirect('/admin')
     } else {
-      await ctx.render('admin/login', {
-        uName: username,
-        codeError: true
+      // await ctx.render('admin/login', {
+      //   uName: username,
+      //   codeError: true
+      // });
+      await ctx.render('admin/error', {
+        message: '用户名或密码错误',
+        redirect: ctx.state.__HOST__ + '/admin/login'
       });
     }
   } else {
-    await ctx.render('admin/login', {
-      uName: username,
-      codeError: true
-    });
-    // await ctx.redirect('back', {
+    // await ctx.render('admin/login', {
+    //   uName: username,
     //   codeError: true
-    // })
+    // });
+    await ctx.render('admin/error', {
+      message: '验证码错误',
+      redirect: ctx.state.__HOST__ + '/admin/login'
+    });
   }
 })
 

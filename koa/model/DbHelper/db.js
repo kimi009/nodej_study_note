@@ -52,6 +52,11 @@ class Db {
     });
   }
 
+  static async deleteOne(collectionName, json) {
+    let client = await Db.getInstance();
+    return client.collection(collectionName).deleteOne(json);
+  }
+
   static getObjectId(id) {
     return new ObjectID(id)
   }

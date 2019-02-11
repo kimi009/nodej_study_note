@@ -43,7 +43,8 @@
         <span class="menu-text"> 控制台 </span>
       </a>
     </li>
-    <li {{if G.urlParams[1] == 'manager'}} class="active open" {{/if}}>
+    <!-- <li {{if G.urlParams && (G.urlParams[1] == 'manager')}} class="active open" {{/if}}> -->
+      <li>
       <a href="#" class="dropdown-toggle">
         <i class="icon-user-md"></i>
         <span class="menu-text"> 管理员管理 </span>
@@ -51,14 +52,16 @@
         <b class="arrow icon-angle-down"></b>
       </a>
       <ul class="submenu">
-        <li {{if !G.urlParams[2]}} class="active" {{/if}}>
+        <!-- <li {{if G.urlParams && !G.urlParams[2]}} class="active" {{/if}}> -->
+          <li>
           <a href="{{__HOST__}}/admin/manager">
             <i class="icon-double-angle-right"></i>
             管理员列表
           </a>
         </li>
 
-        <li {{if G.urlParams[2] == 'add'}} class="active" {{/if}}>
+        <!-- <li {{if G.urlParams && G.urlParams[2] == 'add'}} class="active" {{/if}}> -->
+          <li>
           <a href="{{__HOST__}}/admin/manager/add">
             <i class="icon-double-angle-right"></i>
             增加管理员

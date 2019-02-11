@@ -102,4 +102,14 @@ router.post('/doEdit', async(ctx) => {
   }
 })
 
+router.get('/delete', async(ctx) => {
+  let {
+    id
+  } = ctx.query;
+  await db.deleteOne('admin', {
+    '_id': db.getObjectId(id)
+  });
+  await ctx.redirect('/admin/manager')
+})
+
 module.exports = router.routes();

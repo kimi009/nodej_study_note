@@ -1,3 +1,6 @@
+$(function () {
+  app.confirmDel();
+})
 var app = {
   toggle: function (el, collectionName, attr, id) {
     $.get('/admin/changeStatus', {
@@ -13,6 +16,12 @@ var app = {
           el.src = temp.replace('no', 'yes')
         }
       }
+    })
+  },
+  confirmDel: function () {
+    $('.delete').click(function(){
+      var flag = confirm('确定要删除？');
+      return flag;
     })
   }
 }

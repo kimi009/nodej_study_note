@@ -31,9 +31,9 @@ router.get('/changeStatus', async(ctx) => {
       }
     }
   } else {
-    ctx.body = {
+    console.log({
       'message': '参数错误'
-    }
+    })
   }
 })
 

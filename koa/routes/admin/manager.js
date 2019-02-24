@@ -4,7 +4,6 @@ const router = require('koa-router')(),
 
 router.get('/', async(ctx) => {
   let res = await db.find('admin', {});
-  // console.log(res)
   await ctx.render('admin/manager/list', {
     managers: res
   })

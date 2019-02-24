@@ -17,7 +17,7 @@ class Db {
   }
 
   constructor() {
-    console.log(111)
+    // console.log(111)
   }
 
   static async connect() {
@@ -55,6 +55,11 @@ class Db {
   static async deleteOne(collectionName, json) {
     let client = await Db.getInstance();
     return client.collection(collectionName).deleteOne(json);
+  }
+
+  static async deleteMany(collectionName, json) {
+    let client = await Db.getInstance();
+    return client.collection(collectionName).deleteMany(json);
   }
 
   static getObjectId(id) {

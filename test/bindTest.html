@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+</body>
+<script>
+  var foo = {
+    value: 1
+  }
+
+  var bar = function (name, age) {
+    this.hobby = '打游戏'
+    // console.log(this)
+    console.log('name=' + name)
+    console.log('age=' + age)
+    console.log('value=' + this.value)
+  }
+
+  // var m = bar.bind(foo)('test');
+  // m('test')
+
+  // Function.prototype.bindOverWrite = function (context) {
+  //   var self = this;
+  //   // console.log(self)
+  //   var args = [].slice.call(arguments, 1);
+  //   return function () {
+  //     var barArgs = [].slice.call(arguments);
+  //     console.log(this)
+  //     self.apply(context,args.concat(barArgs))
+  //   }
+  // }
+
+  // var bow = bar.bindOverWrite(foo,'kimi');
+  // bow('23')
+
+  Function.prototype.bindOverWrite = function (context) {
+    var self = this;
+    console.log(self)
+    var args = [].slice.call(arguments, 1);
+    var temp = function () {
+      var barArgs = [].slice.call(arguments);
+      console.log(this instanceof self)
+      // self.apply(this,args.concat(barArgs)) // 这里如果是context 构造函数模式就无法访问hobby 
+      // self.apply(context,args.concat(barArgs)) // 这里如果是this 构造函数模式就无法访问value = 1
+      self.apply(this instanceof self ? this : context,args.concat(barArgs))
+    }
+    temp.prototype = self.prototype;
+    return temp;
+  }
+
+  var bow = bar.bindOverWrite(foo,'kimi');
+  var obj = new bow(22);
+  console.log(obj.hobby);
+
+  bow(33)
+</script>
+
+</html>
